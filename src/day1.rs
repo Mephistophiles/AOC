@@ -2,33 +2,34 @@ use super::Solution;
 
 pub struct Day1;
 
-impl Solution for Day1 {
-    fn part1(&self, input: Vec<String>) -> i32 {
-        let mut max_group = 0;
+struct Day1Solve<const TOP: usize>;
 
-        for groups in input.split(|pred| pred.is_empty()) {
-            let group = groups.iter().map(|s| s.parse::<i32>().unwrap()).sum();
-            max_group = max_group.max(group);
-        }
-
-        max_group
-    }
-
-    fn part2(&self, input: Vec<String>) -> i32 {
-        let mut top3 = [0, 0, 0];
+impl<const TOP: usize> Day1Solve<TOP> {
+    fn get_topn_results(&self, input: Vec<String>) -> i32 {
+        let mut top: [i32; TOP] = [0; TOP];
 
         for groups in input.split(|pred| pred.is_empty()) {
             let group: i32 = groups.iter().map(|s| s.parse::<i32>().unwrap()).sum();
             let mut rem = group;
 
-            for idx in (0..top3.len()).rev() {
-                if top3[idx] < group {
-                    std::mem::swap(&mut top3[idx], &mut rem);
+            for idx in (0..top.len()).rev() {
+                if top[idx] < group {
+                    std::mem::swap(&mut top[idx], &mut rem);
                 }
             }
         }
 
-        top3.iter().sum()
+        top.iter().sum()
+    }
+}
+
+impl Solution for Day1 {
+    fn part1(&self, input: Vec<String>) -> i32 {
+        Day1Solve::<1>.get_topn_results(input)
+    }
+
+    fn part2(&self, input: Vec<String>) -> i32 {
+        Day1Solve::<3>.get_topn_results(input)
     }
 }
 
