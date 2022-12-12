@@ -1,6 +1,6 @@
 use super::Solution;
 
-pub struct Day1;
+struct Problem;
 
 struct Day1Solve<const TOP: usize>;
 
@@ -23,7 +23,8 @@ impl<const TOP: usize> Day1Solve<TOP> {
     }
 }
 
-impl Solution for Day1 {
+impl Solution for Problem {
+    type Result = i32;
     fn part1(&self, input: Vec<String>) -> i32 {
         Day1Solve::<1>.get_topn_results(input)
     }
@@ -39,7 +40,7 @@ mod tests {
 
     #[test]
     fn pre_part1_test() {
-        let solution = Day1;
+        let solution = Problem;
         let demo_input = crate::read_lines("day1_demo.txt");
 
         assert_eq!(solution.part1(demo_input), 24000);
@@ -47,7 +48,7 @@ mod tests {
 
     #[test]
     fn part1_test() {
-        let solution = Day1;
+        let solution = Problem;
         let demo_input = crate::read_lines("day1_part1.txt");
 
         assert_eq!(solution.part1(demo_input), 67658);
@@ -55,7 +56,7 @@ mod tests {
 
     #[test]
     fn pre_part2_test() {
-        let solution = Day1;
+        let solution = Problem;
         let demo_input = crate::read_lines("day1_demo.txt");
 
         assert_eq!(solution.part2(demo_input), 45000);
@@ -63,7 +64,7 @@ mod tests {
 
     #[test]
     fn part2_test() {
-        let solution = Day1;
+        let solution = Problem;
         let demo_input = crate::read_lines("day1_part1.txt");
 
         assert_eq!(solution.part2(demo_input), 200158);

@@ -1,9 +1,9 @@
 use super::Solution;
 
-pub struct Day2;
+struct Problem;
 
 #[derive(Clone, Copy, PartialEq)]
-enum RPS {
+enum Rps {
     Rock = 1,
     Paper = 2,
     Scissors = 3,
@@ -16,38 +16,39 @@ enum Result {
     Win = 6,
 }
 
-const PLAY_MATRIX: [(RPS, RPS, Result); 9] = [
-    (RPS::Rock, RPS::Rock, Result::Draw),
-    (RPS::Rock, RPS::Paper, Result::Lose),
-    (RPS::Rock, RPS::Scissors, Result::Win),
-    (RPS::Paper, RPS::Rock, Result::Win),
-    (RPS::Paper, RPS::Paper, Result::Draw),
-    (RPS::Paper, RPS::Scissors, Result::Lose),
-    (RPS::Scissors, RPS::Rock, Result::Lose),
-    (RPS::Scissors, RPS::Paper, Result::Win),
-    (RPS::Scissors, RPS::Scissors, Result::Draw),
+const PLAY_MATRIX: [(Rps, Rps, Result); 9] = [
+    (Rps::Rock, Rps::Rock, Result::Draw),
+    (Rps::Rock, Rps::Paper, Result::Lose),
+    (Rps::Rock, Rps::Scissors, Result::Win),
+    (Rps::Paper, Rps::Rock, Result::Win),
+    (Rps::Paper, Rps::Paper, Result::Draw),
+    (Rps::Paper, Rps::Scissors, Result::Lose),
+    (Rps::Scissors, Rps::Rock, Result::Lose),
+    (Rps::Scissors, Rps::Paper, Result::Win),
+    (Rps::Scissors, Rps::Scissors, Result::Draw),
 ];
 
-fn parse(line: &str) -> (RPS, RPS) {
+fn parse(line: &str) -> (Rps, Rps) {
     let (opponent, my_turn) = line.split_once(' ').unwrap();
 
     let opponent = match opponent {
-        "A" => RPS::Rock,
-        "B" => RPS::Paper,
-        "C" => RPS::Scissors,
+        "A" => Rps::Rock,
+        "B" => Rps::Paper,
+        "C" => Rps::Scissors,
         _ => unreachable!(),
     };
     let my_turn = match my_turn {
-        "X" => RPS::Rock,
-        "Y" => RPS::Paper,
-        "Z" => RPS::Scissors,
+        "X" => Rps::Rock,
+        "Y" => Rps::Paper,
+        "Z" => Rps::Scissors,
         _ => unreachable!(),
     };
 
     (opponent, my_turn)
 }
 
-impl Solution for Day2 {
+impl Solution for Problem {
+    type Result = i32;
     fn part1(&self, input: Vec<String>) -> i32 {
         let mut score = 0;
 
@@ -73,9 +74,9 @@ impl Solution for Day2 {
             let (opponent, play_result) = parse(&part);
 
             let play_result = match play_result {
-                RPS::Rock => Result::Lose,
-                RPS::Paper => Result::Draw,
-                RPS::Scissors => Result::Win,
+                Rps::Rock => Result::Lose,
+                Rps::Paper => Result::Draw,
+                Rps::Scissors => Result::Win,
             };
 
             let my_turn = PLAY_MATRIX
@@ -97,7 +98,7 @@ mod tests {
 
     #[test]
     fn pre_part1_test() {
-        let solution = Day2;
+        let solution = Problem;
         let demo_input = crate::read_lines("day2_demo.txt");
 
         assert_eq!(solution.part1(demo_input), 15);
@@ -105,7 +106,7 @@ mod tests {
 
     #[test]
     fn part1_test() {
-        let solution = Day2;
+        let solution = Problem;
         let demo_input = crate::read_lines("day2_part1.txt");
 
         assert_eq!(solution.part1(demo_input), 14375);
@@ -113,7 +114,7 @@ mod tests {
 
     #[test]
     fn pre_part2_test() {
-        let solution = Day2;
+        let solution = Problem;
         let demo_input = crate::read_lines("day2_demo.txt");
 
         assert_eq!(solution.part2(demo_input), 12);
@@ -121,7 +122,7 @@ mod tests {
 
     #[test]
     fn part2_test() {
-        let solution = Day2;
+        let solution = Problem;
         let demo_input = crate::read_lines("day2_part1.txt");
 
         assert_eq!(solution.part2(demo_input), 10274);
