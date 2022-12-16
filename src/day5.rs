@@ -1,5 +1,3 @@
-use std::collections::VecDeque;
-
 use super::Solution;
 
 struct Problem;
@@ -12,16 +10,16 @@ struct Move {
 }
 
 impl Problem {
-    fn parse_stacks(stacks: &[String]) -> Vec<VecDeque<&str>> {
+    fn parse_stacks(stacks: &[String]) -> Vec<Vec<&str>> {
         let num_of_stacks = stacks.last().unwrap().split_whitespace().count();
-        let mut out = vec![VecDeque::new(); num_of_stacks];
+        let mut out = vec![Vec::new(); num_of_stacks];
 
-        for line in stacks.iter().take(stacks.len() - 1) {
+        for line in stacks.iter().take(stacks.len() - 1).rev() {
             for idx in 0..num_of_stacks {
                 let stack = &line[idx * 4 + 1..idx * 4 + 2];
 
                 if stack != " " {
-                    out[idx].push_back(stack)
+                    out[idx].push(stack)
                 }
             }
         }
@@ -46,59 +44,46 @@ impl Problem {
             .collect()
     }
 
-    fn process_part1(stacks: &mut [VecDeque<&str>], moves: &[Move]) {
+    fn crane_in(stacks: &mut [Vec<&str>], moves: &[Move], all_crates_at_once: bool) {
+        let mut buf = vec![];
         for mov in moves {
-            for _ in 0..mov.count {
-                let item = stacks[mov.from - 1].pop_front().unwrap();
-                stacks[mov.to - 1].push_front(item);
+            let mut rem = mov.count;
+
+            while rem != 0 {
+                let count = if all_crates_at_once { rem } else { 1 };
+                let from = &mut stacks[mov.from - 1];
+                buf.extend(from.drain(from.len() - count..));
+                stacks[mov.to - 1].append(&mut buf);
+                rem -= count;
             }
         }
     }
+    fn solve(input: Vec<String>, all_crates_at_once: bool) -> String {
+        let mut splits = input.split(|line| line.is_empty());
+        let mut stacks = Self::parse_stacks(splits.next().unwrap());
+        let moves = Self::parse_moves(splits.next().unwrap());
 
-    fn process_part2(stacks: &mut [VecDeque<&str>], moves: &[Move]) {
-        for mov in moves {
-            let items: VecDeque<&str> = stacks[mov.from - 1].drain(0..mov.count).collect();
-            for item in items.into_iter().rev() {
-                stacks[mov.to - 1].push_front(item);
+        Self::crane_in(&mut stacks, moves.as_ref(), all_crates_at_once);
+
+        let mut out = String::with_capacity(stacks.len());
+        for mut stack in stacks.into_iter() {
+            if let Some(item) = stack.pop() {
+                out.push_str(item);
             }
         }
+
+        out
     }
 }
 
 impl Solution for Problem {
     type Result = String;
     fn part1(&self, input: Vec<String>) -> String {
-        let mut splits = input.split(|line| line.is_empty());
-        let mut stacks = Self::parse_stacks(splits.next().unwrap());
-        let moves = Self::parse_moves(splits.next().unwrap());
-
-        Self::process_part1(&mut stacks, moves.as_ref());
-
-        let mut out = String::with_capacity(stacks.len());
-        for mut stack in stacks.into_iter() {
-            if let Some(item) = stack.pop_front() {
-                out.push_str(item);
-            }
-        }
-
-        out
+        Self::solve(input, false)
     }
 
     fn part2(&self, input: Vec<String>) -> String {
-        let mut splits = input.split(|line| line.is_empty());
-        let mut stacks = Self::parse_stacks(splits.next().unwrap());
-        let moves = Self::parse_moves(splits.next().unwrap());
-
-        Self::process_part2(&mut stacks, moves.as_ref());
-
-        let mut out = String::with_capacity(stacks.len());
-        for mut stack in stacks.into_iter() {
-            if let Some(item) = stack.pop_front() {
-                out.push_str(item);
-            }
-        }
-
-        out
+        Self::solve(input, true)
     }
 }
 
