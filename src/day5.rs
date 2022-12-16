@@ -77,6 +77,7 @@ impl Problem {
 }
 
 impl Solution for Problem {
+    type Input = Vec<String>;
     type Result = String;
     fn part1(&self, input: Vec<String>) -> String {
         Self::solve(input, false)

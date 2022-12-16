@@ -3,10 +3,18 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::Path;
+
+pub fn read_file<P: AsRef<Path>>(path: P) -> String {
+    let file = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("data")
+        .join(path.as_ref());
+    std::fs::read_to_string(file).unwrap()
+}
 
 pub fn read_lines<P: AsRef<Path>>(path: P) -> Vec<String> {
     let file = Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -33,6 +41,7 @@ pub fn read_lines<P: AsRef<Path>>(path: P) -> Vec<String> {
 
 pub trait Solution {
     type Result;
-    fn part1(&self, input: Vec<String>) -> Self::Result;
-    fn part2(&self, input: Vec<String>) -> Self::Result;
+    type Input;
+    fn part1(&self, input: Self::Input) -> Self::Result;
+    fn part2(&self, input: Self::Input) -> Self::Result;
 }

@@ -16,6 +16,7 @@ impl Problem {
 }
 
 impl Solution for Problem {
+    type Input = Vec<String>;
     type Result = i32;
     fn part1(&self, input: Vec<String>) -> i32 {
         let mut sum = 0;
