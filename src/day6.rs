@@ -1,15 +1,19 @@
+use std::marker::PhantomData;
+
 use super::Solution;
 
-struct Problem;
+struct Problem<'a> {
+    _phantom: PhantomData<&'a str>,
+}
 
-impl Problem {
+impl<'a> Problem<'a> {
     fn char_to_code(c: u8) -> u8 {
         debug_assert!((b'a'..=b'z').contains(&c));
 
         c - b'a'
     }
 
-    fn find_marker(input: String, window_size: usize) -> usize {
+    fn find_marker(input: &str, window_size: usize) -> usize {
         input
             .as_bytes()
             .windows(window_size)
@@ -32,14 +36,14 @@ impl Problem {
     }
 }
 
-impl Solution for Problem {
-    type Input = String;
+impl<'a> Solution for Problem<'a> {
+    type Input = &'a str;
     type Result = usize;
-    fn part1(&self, input: String) -> usize {
+    fn part1(&mut self, input: &str) -> usize {
         Problem::find_marker(input, 4)
     }
 
-    fn part2(&self, input: String) -> usize {
+    fn part2(&mut self, input: &str) -> usize {
         Problem::find_marker(input, 14)
     }
 }
@@ -52,66 +56,47 @@ mod tests {
 
     #[test]
     fn pre_part1_test() {
-        let solution = Problem;
+        let mut solution = Problem {
+            _phantom: PhantomData,
+        };
 
-        assert_eq!(
-            solution.part1("bvwbjplbgvbhsrlpgdmjqwftvncz".to_string()),
-            5
-        );
-        assert_eq!(
-            solution.part1("nppdvjthqldpwncqszvftbrmjlhg".to_string()),
-            6
-        );
-        assert_eq!(
-            solution.part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg".to_string()),
-            10
-        );
-        assert_eq!(
-            solution.part1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw".to_string()),
-            11
-        );
+        assert_eq!(solution.part1("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
+        assert_eq!(solution.part1("nppdvjthqldpwncqszvftbrmjlhg"), 6);
+        assert_eq!(solution.part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
+        assert_eq!(solution.part1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
     }
 
     #[test]
     fn part1_test() {
-        let solution = Problem;
+        let mut solution = Problem {
+            _phantom: PhantomData,
+        };
         let demo = read_file("day6_part1.txt");
 
-        assert_eq!(solution.part1(demo), 1155);
+        assert_eq!(solution.part1(&demo), 1155);
     }
 
     #[test]
     fn pre_part2_test() {
-        let solution = Problem;
+        let mut solution = Problem {
+            _phantom: PhantomData,
+        };
 
-        assert_eq!(
-            solution.part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb".to_string()),
-            19
-        );
-        assert_eq!(
-            solution.part2("bvwbjplbgvbhsrlpgdmjqwftvncz".to_string()),
-            23
-        );
-        assert_eq!(
-            solution.part2("nppdvjthqldpwncqszvftbrmjlhg".to_string()),
-            23
-        );
-        assert_eq!(
-            solution.part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg".to_string()),
-            29
-        );
-        assert_eq!(
-            solution.part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw".to_string()),
-            26
-        );
+        assert_eq!(solution.part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19);
+        assert_eq!(solution.part2("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
+        assert_eq!(solution.part2("nppdvjthqldpwncqszvftbrmjlhg"), 23);
+        assert_eq!(solution.part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
+        assert_eq!(solution.part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
     }
 
     #[test]
     fn part2_test() {
-        let solution = Problem;
+        let mut solution = Problem {
+            _phantom: PhantomData,
+        };
 
         let demo = read_file("day6_part1.txt");
 
-        assert_eq!(solution.part2(demo), 2789);
+        assert_eq!(solution.part2(&demo), 2789);
     }
 }

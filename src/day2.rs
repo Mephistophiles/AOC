@@ -50,7 +50,7 @@ fn parse(line: &str) -> (Rps, Rps) {
 impl Solution for Problem {
     type Input = Vec<String>;
     type Result = i32;
-    fn part1(&self, input: Vec<String>) -> i32 {
+    fn part1(&mut self, input: Vec<String>) -> i32 {
         let mut score = 0;
 
         for part in input {
@@ -68,7 +68,7 @@ impl Solution for Problem {
         score
     }
 
-    fn part2(&self, input: Vec<String>) -> i32 {
+    fn part2(&mut self, input: Vec<String>) -> i32 {
         let mut score = 0;
 
         for part in input {
@@ -99,7 +99,7 @@ mod tests {
 
     #[test]
     fn pre_part1_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day2_demo.txt");
 
         assert_eq!(solution.part1(demo_input), 15);
@@ -107,7 +107,7 @@ mod tests {
 
     #[test]
     fn part1_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day2_part1.txt");
 
         assert_eq!(solution.part1(demo_input), 14375);
@@ -115,7 +115,7 @@ mod tests {
 
     #[test]
     fn pre_part2_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day2_demo.txt");
 
         assert_eq!(solution.part2(demo_input), 12);
@@ -123,7 +123,7 @@ mod tests {
 
     #[test]
     fn part2_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day2_part1.txt");
 
         assert_eq!(solution.part2(demo_input), 10274);

@@ -4,6 +4,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -40,8 +41,8 @@ pub fn read_lines<P: AsRef<Path>>(path: P) -> Vec<String> {
 }
 
 pub trait Solution {
-    type Result;
     type Input;
-    fn part1(&self, input: Self::Input) -> Self::Result;
-    fn part2(&self, input: Self::Input) -> Self::Result;
+    type Result;
+    fn part1(&mut self, input: Self::Input) -> Self::Result;
+    fn part2(&mut self, input: Self::Input) -> Self::Result;
 }

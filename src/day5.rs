@@ -79,11 +79,11 @@ impl Problem {
 impl Solution for Problem {
     type Input = Vec<String>;
     type Result = String;
-    fn part1(&self, input: Vec<String>) -> String {
+    fn part1(&mut self, input: Vec<String>) -> String {
         Self::solve(input, false)
     }
 
-    fn part2(&self, input: Vec<String>) -> String {
+    fn part2(&mut self, input: Vec<String>) -> String {
         Self::solve(input, true)
     }
 }
@@ -94,7 +94,7 @@ mod tests {
 
     #[test]
     fn pre_part1_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day5_demo.txt");
 
         assert_eq!(solution.part1(demo_input), "CMZ".to_string());
@@ -102,7 +102,7 @@ mod tests {
 
     #[test]
     fn part1_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day5_part1.txt");
 
         assert_eq!(solution.part1(demo_input), "CFFHVVHNC".to_string());
@@ -110,7 +110,7 @@ mod tests {
 
     #[test]
     fn pre_part2_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day5_demo.txt");
 
         assert_eq!(solution.part2(demo_input), "MCD".to_string());
@@ -118,7 +118,7 @@ mod tests {
 
     #[test]
     fn part2_test() {
-        let solution = Problem;
+        let mut solution = Problem;
         let demo_input = crate::read_lines("day5_part1.txt");
 
         assert_eq!(solution.part2(demo_input), "FSZWBPTBG".to_string());
