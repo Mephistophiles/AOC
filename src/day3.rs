@@ -1,5 +1,8 @@
 use std::collections::HashSet;
 
+#[cfg(test)]
+const DAY: usize = 3;
+
 use super::Solution;
 
 struct Problem;
@@ -66,7 +69,7 @@ mod tests {
     #[test]
     fn pre_part1_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day3_demo.txt");
+        let demo_input = crate::get_demo_lines(DAY);
 
         assert_eq!(solution.part1(demo_input), 157);
     }
@@ -74,7 +77,7 @@ mod tests {
     #[test]
     fn part1_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day3_part1.txt");
+        let demo_input = crate::get_problem_lines(DAY);
 
         assert_eq!(solution.part1(demo_input), 7763);
     }
@@ -82,7 +85,7 @@ mod tests {
     #[test]
     fn pre_part2_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day3_demo.txt");
+        let demo_input = crate::get_demo_lines(DAY);
 
         assert_eq!(solution.part2(demo_input), 70);
     }
@@ -90,7 +93,7 @@ mod tests {
     #[test]
     fn part2_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day3_part1.txt");
+        let demo_input = crate::get_problem_lines(DAY);
 
         assert_eq!(solution.part2(demo_input), 2569);
     }

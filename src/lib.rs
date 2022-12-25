@@ -9,7 +9,7 @@ mod day8;
 
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 pub fn read_file<P: AsRef<Path>>(path: P) -> String {
     let file = Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -18,10 +18,7 @@ pub fn read_file<P: AsRef<Path>>(path: P) -> String {
     std::fs::read_to_string(file).unwrap()
 }
 
-pub fn read_lines<P: AsRef<Path>>(path: P) -> Vec<String> {
-    let file = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("data")
-        .join(path.as_ref());
+fn read_lines(file: PathBuf) -> Vec<String> {
     let file = File::open(file).expect("File should exists");
     let mut buf_read = BufReader::new(file);
     let mut out = vec![];
@@ -39,6 +36,32 @@ pub fn read_lines<P: AsRef<Path>>(path: P) -> Vec<String> {
         }
         out.push(line);
     }
+}
+
+fn get_file(day: usize, t: &str) -> PathBuf {
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("data")
+        .join(format!("day{day}_{t}.txt"))
+}
+
+pub fn get_demo(day: usize) -> String {
+    let file = get_file(day, "demo");
+    std::fs::read_to_string(file).unwrap()
+}
+
+pub fn get_problem(day: usize) -> String {
+    let file = get_file(day, "problem");
+    std::fs::read_to_string(file).unwrap()
+}
+
+pub fn get_demo_lines(day: usize) -> Vec<String> {
+    let file = get_file(day, "demo");
+    read_lines(file)
+}
+
+pub fn get_problem_lines(day: usize) -> Vec<String> {
+    let file = get_file(day, "problem");
+    read_lines(file)
 }
 
 pub trait Solution {

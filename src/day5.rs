@@ -1,5 +1,8 @@
 use super::Solution;
 
+#[cfg(test)]
+const DAY: usize = 5;
+
 struct Problem;
 
 #[derive(Debug)]
@@ -95,7 +98,7 @@ mod tests {
     #[test]
     fn pre_part1_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day5_demo.txt");
+        let demo_input = crate::get_demo_lines(DAY);
 
         assert_eq!(solution.part1(demo_input), "CMZ".to_string());
     }
@@ -103,7 +106,7 @@ mod tests {
     #[test]
     fn part1_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day5_part1.txt");
+        let demo_input = crate::get_problem_lines(DAY);
 
         assert_eq!(solution.part1(demo_input), "CFFHVVHNC".to_string());
     }
@@ -111,7 +114,7 @@ mod tests {
     #[test]
     fn pre_part2_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day5_demo.txt");
+        let demo_input = crate::get_demo_lines(DAY);
 
         assert_eq!(solution.part2(demo_input), "MCD".to_string());
     }
@@ -119,7 +122,7 @@ mod tests {
     #[test]
     fn part2_test() {
         let mut solution = Problem;
-        let demo_input = crate::read_lines("day5_part1.txt");
+        let demo_input = crate::get_problem_lines(DAY);
 
         assert_eq!(solution.part2(demo_input), "FSZWBPTBG".to_string());
     }
