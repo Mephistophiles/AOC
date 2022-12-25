@@ -1,5 +1,7 @@
 use std::str::FromStr;
 
+use crate::Void;
+
 use super::Solution;
 
 struct Problem;
@@ -10,7 +12,7 @@ struct Range {
 }
 
 impl FromStr for Range {
-    type Err = ();
+    type Err = Void;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let (from, to) = s.split_once('-').unwrap();

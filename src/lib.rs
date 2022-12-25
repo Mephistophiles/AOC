@@ -1,4 +1,5 @@
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -10,6 +11,9 @@ mod day8;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::{Path, PathBuf};
+
+#[derive(Debug)]
+pub(crate) enum Void {}
 
 #[macro_export]
 macro_rules! day {
