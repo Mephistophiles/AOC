@@ -1,0 +1,5 @@
+---
+source: src/day8.rs
+expression: solution.part2(demo_input)
+---
+519064

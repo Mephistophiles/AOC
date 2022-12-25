@@ -1,0 +1,5 @@
+---
+source: src/day6.rs
+expression: "solution.part1(\"nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg\")"
+---
+10

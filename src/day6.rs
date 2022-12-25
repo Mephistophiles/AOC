@@ -60,10 +60,10 @@ mod tests {
             _phantom: PhantomData,
         };
 
-        assert_eq!(solution.part1("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
-        assert_eq!(solution.part1("nppdvjthqldpwncqszvftbrmjlhg"), 6);
-        assert_eq!(solution.part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
-        assert_eq!(solution.part1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
+        insta::assert_debug_snapshot!(solution.part1("bvwbjplbgvbhsrlpgdmjqwftvncz"));
+        insta::assert_debug_snapshot!(solution.part1("nppdvjthqldpwncqszvftbrmjlhg"));
+        insta::assert_debug_snapshot!(solution.part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"));
+        insta::assert_debug_snapshot!(solution.part1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"));
     }
 
     #[test]
@@ -73,7 +73,7 @@ mod tests {
         };
         let demo = problem!();
 
-        assert_eq!(solution.part1(&demo), 1155);
+        insta::assert_debug_snapshot!(solution.part1(&demo));
     }
 
     #[test]
@@ -82,11 +82,11 @@ mod tests {
             _phantom: PhantomData,
         };
 
-        assert_eq!(solution.part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19);
-        assert_eq!(solution.part2("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
-        assert_eq!(solution.part2("nppdvjthqldpwncqszvftbrmjlhg"), 23);
-        assert_eq!(solution.part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
-        assert_eq!(solution.part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
+        insta::assert_debug_snapshot!(solution.part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"));
+        insta::assert_debug_snapshot!(solution.part2("bvwbjplbgvbhsrlpgdmjqwftvncz"));
+        insta::assert_debug_snapshot!(solution.part2("nppdvjthqldpwncqszvftbrmjlhg"));
+        insta::assert_debug_snapshot!(solution.part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"));
+        insta::assert_debug_snapshot!(solution.part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"));
     }
 
     #[test]
@@ -97,6 +97,6 @@ mod tests {
 
         let demo = problem!();
 
-        assert_eq!(solution.part2(&demo), 2789);
+        insta::assert_debug_snapshot!(solution.part2(&demo));
     }
 }

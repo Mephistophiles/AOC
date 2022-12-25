@@ -46,7 +46,7 @@ mod tests {
         let mut solution = Problem;
         let demo_input = demo_lines!();
 
-        assert_eq!(solution.part1(demo_input), 24000);
+        insta::assert_debug_snapshot!(solution.part1(demo_input));
     }
 
     #[test]
@@ -54,7 +54,7 @@ mod tests {
         let mut solution = Problem;
         let demo_input = problem_lines!();
 
-        assert_eq!(solution.part1(demo_input), 67658);
+        insta::assert_debug_snapshot!(solution.part1(demo_input));
     }
 
     #[test]
@@ -62,7 +62,7 @@ mod tests {
         let mut solution = Problem;
         let demo_input = demo_lines!();
 
-        assert_eq!(solution.part2(demo_input), 45000);
+        insta::assert_debug_snapshot!(solution.part2(demo_input));
     }
 
     #[test]
@@ -70,6 +70,6 @@ mod tests {
         let mut solution = Problem;
         let demo_input = problem_lines!();
 
-        assert_eq!(solution.part2(demo_input), 200158);
+        insta::assert_debug_snapshot!(solution.part2(demo_input));
     }
 }
