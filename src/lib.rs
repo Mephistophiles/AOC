@@ -1,12 +1,13 @@
-mod day1;
+mod day01;
+mod day02;
+mod day03;
+mod day04;
+mod day05;
+mod day06;
+mod day07;
+mod day08;
+mod day09;
 mod day10;
-mod day2;
-mod day3;
-mod day4;
-mod day5;
-mod day6;
-mod day7;
-mod day8;
 
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -91,7 +92,7 @@ fn read_lines(file: PathBuf) -> Vec<String> {
 fn get_file(day: usize, t: &str) -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("data")
-        .join(format!("day{day}_{t}.txt"))
+        .join(format!("day{day:02}_{t}.txt"))
 }
 
 pub fn get_demo(day: usize) -> String {

@@ -1,0 +1,5 @@
+---
+source: src/day05.rs
+expression: solution.part1(demo_input)
+---
+"CFFHVVHNC"

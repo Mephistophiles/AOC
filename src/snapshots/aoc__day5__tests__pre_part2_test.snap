@@ -1,5 +1,0 @@
----
-source: src/day5.rs
-expression: solution.part2(demo_input)
----
-"MCD"

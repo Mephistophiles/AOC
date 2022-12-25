@@ -1,0 +1,5 @@
+---
+source: src/day04.rs
+expression: solution.part2(demo_input)
+---
+4

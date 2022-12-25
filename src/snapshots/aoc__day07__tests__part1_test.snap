@@ -1,0 +1,5 @@
+---
+source: src/day07.rs
+expression: solution.part1(demo_input)
+---
+1543140

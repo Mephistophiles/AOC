@@ -1,0 +1,5 @@
+---
+source: src/day06.rs
+expression: "solution.part2(\"zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw\")"
+---
+26

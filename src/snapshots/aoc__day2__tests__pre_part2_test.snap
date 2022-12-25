@@ -1,5 +1,0 @@
----
-source: src/day2.rs
-expression: solution.part2(demo_input)
----
-12
