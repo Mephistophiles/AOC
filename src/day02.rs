@@ -100,7 +100,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn pre_part1_test() {
+    fn part1_demo_test() {
         let mut solution = Problem;
         let demo_input = demo_lines!();
 
@@ -108,7 +108,7 @@ mod tests {
     }
 
     #[test]
-    fn part1_test() {
+    fn part1_problem_test() {
         let mut solution = Problem;
         let demo_input = problem_lines!();
 
@@ -116,7 +116,7 @@ mod tests {
     }
 
     #[test]
-    fn pre_part2_test() {
+    fn part2_demo_test() {
         let mut solution = Problem;
         let demo_input = demo_lines!();
 
@@ -124,7 +124,7 @@ mod tests {
     }
 
     #[test]
-    fn part2_test() {
+    fn part2_problem_test() {
         let mut solution = Problem;
         let demo_input = problem_lines!();
 
