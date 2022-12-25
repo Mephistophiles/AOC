@@ -1,8 +1,5 @@
 use std::marker::PhantomData;
 
-#[cfg(test)]
-const DAY: usize = 6;
-
 use super::Solution;
 
 struct Problem<'a> {
@@ -53,6 +50,8 @@ impl<'a> Solution for Problem<'a> {
 
 #[cfg(test)]
 mod tests {
+    use crate::problem;
+
     use super::*;
 
     #[test]
@@ -72,7 +71,7 @@ mod tests {
         let mut solution = Problem {
             _phantom: PhantomData,
         };
-        let demo = crate::get_problem(DAY);
+        let demo = problem!();
 
         assert_eq!(solution.part1(&demo), 1155);
     }
@@ -96,7 +95,7 @@ mod tests {
             _phantom: PhantomData,
         };
 
-        let demo = crate::get_problem(DAY);
+        let demo = problem!();
 
         assert_eq!(solution.part2(&demo), 2789);
     }

@@ -1,8 +1,5 @@
 use std::str::FromStr;
 
-#[cfg(test)]
-const DAY: usize = 4;
-
 use super::Solution;
 
 struct Problem;
@@ -64,12 +61,14 @@ impl Solution for Problem {
 
 #[cfg(test)]
 mod tests {
+    use crate::{demo_lines, problem_lines};
+
     use super::*;
 
     #[test]
     fn pre_part1_test() {
         let mut solution = Problem;
-        let demo_input = crate::get_demo_lines(DAY);
+        let demo_input = demo_lines!();
 
         assert_eq!(solution.part1(demo_input), 2);
     }
@@ -77,7 +76,7 @@ mod tests {
     #[test]
     fn part1_test() {
         let mut solution = Problem;
-        let demo_input = crate::get_problem_lines(DAY);
+        let demo_input = problem_lines!();
 
         assert_eq!(solution.part1(demo_input), 542);
     }
@@ -85,7 +84,7 @@ mod tests {
     #[test]
     fn pre_part2_test() {
         let mut solution = Problem;
-        let demo_input = crate::get_demo_lines(DAY);
+        let demo_input = demo_lines!();
 
         assert_eq!(solution.part2(demo_input), 4);
     }
@@ -93,7 +92,7 @@ mod tests {
     #[test]
     fn part2_test() {
         let mut solution = Problem;
-        let demo_input = crate::get_problem_lines(DAY);
+        let demo_input = problem_lines!();
 
         assert_eq!(solution.part2(demo_input), 900);
     }

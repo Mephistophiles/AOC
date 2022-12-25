@@ -11,6 +11,52 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::{Path, PathBuf};
 
+#[macro_export]
+macro_rules! day {
+    () => {{
+        let file = file!();
+        let file = ::std::path::Path::new(file)
+            .file_name()
+            .expect("right file name");
+        let strip = file
+            .to_str()
+            .unwrap()
+            .strip_prefix("day")
+            .expect("right file name");
+        let (number, _) = strip.split_once('.').expect("right file name");
+
+        number.parse::<usize>().expect("right file name")
+    }};
+}
+
+#[macro_export]
+macro_rules! demo {
+    () => {
+        $crate::get_demo($crate::day!())
+    };
+}
+
+#[macro_export]
+macro_rules! demo_lines {
+    () => {
+        $crate::get_demo_lines($crate::day!())
+    };
+}
+
+#[macro_export]
+macro_rules! problem {
+    () => {
+        $crate::get_problem($crate::day!())
+    };
+}
+
+#[macro_export]
+macro_rules! problem_lines {
+    () => {
+        $crate::get_problem_lines($crate::day!())
+    };
+}
+
 pub fn read_file<P: AsRef<Path>>(path: P) -> String {
     let file = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("data")
